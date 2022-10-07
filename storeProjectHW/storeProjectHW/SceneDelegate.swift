@@ -29,10 +29,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
          let tabBar = UITabBarController()
 
-         let buyViewController = BuyViewController()
-         let personViewController = PersonViewController()
-         let searchViewController = SearchViewController()
-         let backetViewContoller = BasketViewController()
+         let buyViewController = UINavigationController(rootViewController: PersonViewController())
+         let personViewController = UINavigationController(rootViewController: PersonViewController())
+         let searchViewController = UINavigationController(rootViewController: SearchViewController())
+         let backetViewContoller = UINavigationController(rootViewController: BasketViewController())
 
         createTabBarItem(viewController: buyViewController,
                          title: Constants.laptopAndPhoneTitle,

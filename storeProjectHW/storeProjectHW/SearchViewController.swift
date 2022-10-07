@@ -99,10 +99,21 @@ final class SearchViewController: UIViewController {
     
     // MARK: - Private methods
     @objc private func imageTappedAction(tapGestureRecognizer: UITapGestureRecognizer) {
-        let basketViewController = BasketViewController()
-        basketViewController.modalPresentationStyle = .fullScreen
-        tabBarController?.present(basketViewController, animated: true)
+        switch tapGestureRecognizer.view?.tag {
+        case 0:
+            productInfo(nameProduct: Constants.blackCase, imageProduct: Constants.blackImage)
+        default:
+            break
+        }
      }
+    
+    private func productInfo(nameProduct: String, imageProduct: String) {
+        let basketViewController = BasketViewController()
+        basketViewController.productName = nameProduct
+        basketViewController.productImageName = imageProduct
+        
+        navigationController?.pushViewController(basketViewController, animated: false)
+    }
     
     private func initMethods() {
         configureViews()
@@ -154,12 +165,14 @@ final class SearchViewController: UIViewController {
     ) {
         let imageView = UIImageView()
         imageView.frame = frameOfSecondImage
+        imageView.tag = tag
         if tag == 0 {
             let tapGestureRecognizer = UITapGestureRecognizer(
                 target: self, action: #selector(imageTappedAction(tapGestureRecognizer:))
             )
             imageView.isUserInteractionEnabled = true
             imageView.addGestureRecognizer(tapGestureRecognizer)
+            
         }
     
         imageView.backgroundColor = UIColor(red: 0.11, green: 0.11, blue: 0.12, alpha: 1.00)
