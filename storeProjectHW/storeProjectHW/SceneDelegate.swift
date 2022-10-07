@@ -8,48 +8,72 @@
 import UIKit
 /// 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    private enum Constants {
+        static let laptopAndPhoneImageName = "laptopcomputer.and.iphone"
+        static let laptopAndPhoneTitle = "Купить"
+        static let personImageName = "person.circle"
+        static let personTitle = "Для вас"
+        static let searchTitle = "Поиск"
+        static let searchImageName = "magnifyingglass"
+        static let backetImageName = "bag"
+        static let backetTitle = "Корзина"
+    }
 
     var window: UIWindow?
     
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
-               options connectionOptions: UIScene.ConnectionOptions
-    ) {
-        guard let scene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: scene)
-        
-        let tabBar = UITabBarController()
-        
-        let buyViewController = BuyViewController()
-        let personViewController = PersonViewController()
-        let searchViewController = SearchViewController()
-        let backetViewContoller = BasketViewController()
-        
-        buyViewController.tabBarItem = UITabBarItem(
-            title: "Купить", image: UIImage(systemName: "laptopcomputer.and.iphone",
-                                            withConfiguration: UIImage.SymbolConfiguration(weight: .light)), tag: 0
-        )
-        personViewController.tabBarItem = UITabBarItem(
-            title: "Для вас", image: UIImage(systemName: "person.circle",
-                                             withConfiguration: UIImage.SymbolConfiguration(weight: .medium)), tag: 1
-        )
-        searchViewController.tabBarItem = UITabBarItem(
-            title: "Поиск", image: UIImage(systemName: "magnifyingglass",
-                                           withConfiguration: UIImage.SymbolConfiguration(weight: .medium)), tag: 3
-        )
-        backetViewContoller.tabBarItem = UITabBarItem(
-            title: "Корзина", image: UIImage(systemName: "bag",
-                                             withConfiguration: UIImage.SymbolConfiguration(weight: .medium)), tag: 4
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
+         guard let scene = (scene as? UIWindowScene) else { return }
+         window = UIWindow(windowScene: scene)
+
+         let tabBar = UITabBarController()
+
+         let buyViewController = BuyViewController()
+         let personViewController = PersonViewController()
+         let searchViewController = SearchViewController()
+         let backetViewContoller = BasketViewController()
+
+        createTabBarItem(viewController: buyViewController,
+                         title: Constants.laptopAndPhoneTitle,
+                         nameImage: Constants.laptopAndPhoneImageName,
+                         tag: 0
         )
         
-        tabBar.setViewControllers(
-            [buyViewController, personViewController, searchViewController, backetViewContoller],
-            animated: false
+        createTabBarItem(viewController: personViewController,
+                         title: Constants.personTitle,
+                         nameImage: Constants.personImageName,
+                         tag: 1
         )
         
-        tabBar.tabBar.unselectedItemTintColor = .gray
-        tabBar.tabBar.backgroundColor = UIColor(red: 0.07, green: 0.07, blue: 0.07, alpha: 1.00)
+        createTabBarItem(viewController: searchViewController,
+                         title: Constants.searchTitle,
+                         nameImage: Constants.searchImageName,
+                         tag: 3
+        )
         
-        window?.rootViewController = tabBar
-        window?.makeKeyAndVisible()
+        createTabBarItem(viewController: backetViewContoller,
+                         title: Constants.backetTitle,
+                         nameImage: Constants.backetImageName,
+                         tag: 4
+        )
+
+         tabBar.setViewControllers(
+             [buyViewController, personViewController, searchViewController, backetViewContoller],
+             animated: false
+         )
+
+         tabBar.tabBar.unselectedItemTintColor = .gray
+         tabBar.tabBar.backgroundColor = UIColor(red: 0.07, green: 0.07, blue: 0.07, alpha: 1.00)
+
+         window?.rootViewController = tabBar
+         window?.makeKeyAndVisible()
+    }
+    
+    func createTabBarItem(viewController: UIViewController, title: String, nameImage: String, tag: Int) {
+        viewController.tabBarItem = UITabBarItem(
+            title: title, image: UIImage(systemName: nameImage,
+                                             withConfiguration: UIImage.SymbolConfiguration(weight: .medium)), tag: tag
+        )
     }
 }
