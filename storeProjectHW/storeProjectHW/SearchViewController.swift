@@ -29,7 +29,7 @@ final class SearchViewController: UIViewController {
 
     // MARK: - Private Visual Components
     private lazy var searchLabel: UILabel = {
-        var label = UILabel()
+        let label = UILabel()
         label.font = .boldSystemFont(ofSize: 30)
         label.frame = CGRect(x: 5, y: 80, width: 140, height: 75)
         label.textColor = .white
@@ -39,7 +39,7 @@ final class SearchViewController: UIViewController {
     }()
     
     private lazy var recentlyLabel: UILabel = {
-        var label = UILabel()
+        let label = UILabel()
         label.font = .boldSystemFont(ofSize: 24)
         label.frame = CGRect(x: 5, y: 200, width: 300, height: 75)
         label.textColor = .white
@@ -49,7 +49,7 @@ final class SearchViewController: UIViewController {
     }()
     
     private lazy var variantsLabel: UILabel = {
-        var label = UILabel()
+        let label = UILabel()
         label.font = .boldSystemFont(ofSize: 24)
         label.frame = CGRect(x: 5, y: 435, width: 300, height: 75)
         label.textColor = .white
@@ -59,7 +59,7 @@ final class SearchViewController: UIViewController {
     }()
     
     private lazy var clearButton: UIButton = {
-        var button = UIButton()
+        let button = UIButton()
         button.setTitle(Constants.clear, for: .normal)
         button.setTitleColor(UIColor(
             red: 4/255, green: 140/255, blue: 224/255, alpha: 1.0
@@ -70,7 +70,7 @@ final class SearchViewController: UIViewController {
     }()
     
     private lazy var searchTextField: UITextField = {
-        var textField = UITextField()
+        let textField = UITextField()
         textField.textColor = UIColor(red: 0.5882, green: 0.5882, blue: 0.5882, alpha: 1.0)
         textField.attributedPlaceholder = NSAttributedString(
             string: Constants.searchProduct,
@@ -78,7 +78,8 @@ final class SearchViewController: UIViewController {
                             UIColor(red: 0.5882, green: 0.5882, blue: 0.5882, alpha: 1.0)
                         ]
         )
-        var imageView = UIImageView(image: UIImage(systemName: Constants.magnifyingglass))
+        
+        let imageView = UIImageView(image: UIImage(systemName: Constants.magnifyingglass))
         imageView.tintColor = UIColor(red: 0.5882, green: 0.5882, blue: 0.5882, alpha: 1.0)
         textField.leftView = imageView
         textField.leftViewMode = .always
@@ -96,14 +97,13 @@ final class SearchViewController: UIViewController {
 
     }
     
-    // MARK: - Private IBAction
+    // MARK: - Private methods
     @objc private func imageTappedAction(tapGestureRecognizer: UITapGestureRecognizer) {
         let basketViewController = BasketViewController()
         basketViewController.modalPresentationStyle = .fullScreen
         tabBarController?.present(basketViewController, animated: true)
      }
     
-    // MARK: - Private Methods
     private func initMethods() {
         configureViews()
         
@@ -111,10 +111,10 @@ final class SearchViewController: UIViewController {
         createGrayLine(frame: CGRect(x: 5, y: 590, width: 385, height: 1))
         createGrayLine(frame: CGRect(x: 5, y: 640, width: 385, height: 1))
         
-        createMagnifyingGlass(frame: CGRect(x: 5, y: 505, width: 23, height: 23))
-        createMagnifyingGlass(frame: CGRect(x: 5, y: 555, width: 23, height: 23))
-        createMagnifyingGlass(frame: CGRect(x: 5, y: 605, width: 23, height: 23))
-        createMagnifyingGlass(frame: CGRect(x: 5, y: 655, width: 23, height: 23))
+        createMagnifyingGlassImageView(frame: CGRect(x: 5, y: 505, width: 23, height: 23))
+        createMagnifyingGlassImageView(frame: CGRect(x: 5, y: 555, width: 23, height: 23))
+        createMagnifyingGlassImageView(frame: CGRect(x: 5, y: 605, width: 23, height: 23))
+        createMagnifyingGlassImageView(frame: CGRect(x: 5, y: 655, width: 23, height: 23))
         
         createProductText(text: Constants.airpods, frame: CGRect(x: 40, y: 490, width: 140, height: 50))
         createProductText(text: Constants.appleCare, frame: CGRect(x: 40, y: 540, width: 140, height: 50))
@@ -140,7 +140,7 @@ final class SearchViewController: UIViewController {
         )
     }
     
-    private func createMagnifyingGlass(frame: CGRect) {
+    private func createMagnifyingGlassImageView(frame: CGRect) {
         let imageView = UIImageView(image: UIImage(systemName: Constants.magnifyingglass))
         imageView.tintColor = UIColor(red: 0.5882, green: 0.5882, blue: 0.5882, alpha: 1.0)
         imageView.frame = frame
@@ -179,12 +179,13 @@ final class SearchViewController: UIViewController {
         view.addSubview(mainImageView)
         view.addSubview(label)
     }
+    
     private func createGrayLine(frame: CGRect) {
-        let view = UIView()
-        view.frame = frame
-        view.setUnderLine()
+        let lineView = UIView()
+        lineView.frame = frame
+        lineView.setUnderLine()
         
-        self.view.addSubview(view)
+        view.addSubview(lineView)
     }
     
     private func createProductText(text: String, frame: CGRect) {
@@ -207,7 +208,7 @@ final class SearchViewController: UIViewController {
         view.backgroundColor = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.00)
     }
 }
-
+/// Вьюшка серой линии
 extension UIView {
     func setUnderLine() {
         let border = CALayer()
@@ -217,7 +218,7 @@ extension UIView {
                               width: self.frame.size.width - 10,
                               height: self.frame.size.height)
         border.borderWidth = width
-        self.layer.addSublayer(border)
-        self.layer.masksToBounds = true
+        layer.addSublayer(border)
+        layer.masksToBounds = true
     }
 }
