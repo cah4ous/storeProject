@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		713F8EFB28F0153E002E4D05 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713F8EFA28F0153E002E4D05 /* BasketViewController.swift */; };
+		713F8EFD28F0155D002E4D05 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713F8EFC28F0155D002E4D05 /* SearchViewController.swift */; };
+		713F8EFF28F01592002E4D05 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713F8EFE28F01592002E4D05 /* PersonViewController.swift */; };
 		7169AA1028F013A600920F27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169AA0F28F013A600920F27 /* AppDelegate.swift */; };
 		7169AA1228F013A600920F27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169AA1128F013A600920F27 /* SceneDelegate.swift */; };
-		7169AA1428F013A600920F27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169AA1328F013A600920F27 /* ViewController.swift */; };
+		7169AA1428F013A600920F27 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169AA1328F013A600920F27 /* BuyViewController.swift */; };
 		7169AA1728F013A600920F27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7169AA1528F013A600920F27 /* Main.storyboard */; };
 		7169AA1928F013A700920F27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7169AA1828F013A700920F27 /* Assets.xcassets */; };
 		7169AA1C28F013A800920F27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7169AA1A28F013A800920F27 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		713F8EFA28F0153E002E4D05 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
+		713F8EFC28F0155D002E4D05 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		713F8EFE28F01592002E4D05 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		7169AA0C28F013A600920F27 /* storeProjectHW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storeProjectHW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7169AA0F28F013A600920F27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7169AA1128F013A600920F27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7169AA1328F013A600920F27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7169AA1328F013A600920F27 /* BuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
 		7169AA1628F013A600920F27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7169AA1828F013A700920F27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7169AA1B28F013A800920F27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,7 +64,10 @@
 			children = (
 				7169AA0F28F013A600920F27 /* AppDelegate.swift */,
 				7169AA1128F013A600920F27 /* SceneDelegate.swift */,
-				7169AA1328F013A600920F27 /* ViewController.swift */,
+				7169AA1328F013A600920F27 /* BuyViewController.swift */,
+				713F8EFA28F0153E002E4D05 /* BasketViewController.swift */,
+				713F8EFE28F01592002E4D05 /* PersonViewController.swift */,
+				713F8EFC28F0155D002E4D05 /* SearchViewController.swift */,
 				7169AA1528F013A600920F27 /* Main.storyboard */,
 				7169AA1828F013A700920F27 /* Assets.xcassets */,
 				7169AA1A28F013A800920F27 /* LaunchScreen.storyboard */,
@@ -77,6 +86,7 @@
 				7169AA0828F013A600920F27 /* Sources */,
 				7169AA0928F013A600920F27 /* Frameworks */,
 				7169AA0A28F013A600920F27 /* Resources */,
+				713F8F0028F015B1002E4D05 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -133,13 +143,36 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		713F8F0028F015B1002E4D05 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7169AA0828F013A600920F27 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7169AA1428F013A600920F27 /* ViewController.swift in Sources */,
+				713F8EFF28F01592002E4D05 /* PersonViewController.swift in Sources */,
+				713F8EFD28F0155D002E4D05 /* SearchViewController.swift in Sources */,
+				7169AA1428F013A600920F27 /* BuyViewController.swift in Sources */,
 				7169AA1028F013A600920F27 /* AppDelegate.swift in Sources */,
+				713F8EFB28F0153E002E4D05 /* BasketViewController.swift in Sources */,
 				7169AA1228F013A600920F27 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
