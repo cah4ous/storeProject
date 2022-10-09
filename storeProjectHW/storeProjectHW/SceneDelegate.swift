@@ -17,6 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         static let searchImageName = "magnifyingglass"
         static let backetImageName = "bag"
         static let backetTitle = "Корзина"
+        static let unselectedTabBar = "unselectedTabBar"
+        static let tabColor = "tabColor"
     }
 
     var window: UIWindow?
@@ -29,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
          let tabBar = UITabBarController()
 
-         let buyViewController = UINavigationController(rootViewController: PersonViewController())
+         let buyViewController = UINavigationController(rootViewController: BuyViewController())
          let personViewController = UINavigationController(rootViewController: PersonViewController())
          let searchViewController = UINavigationController(rootViewController: SearchViewController())
          let backetViewContoller = UINavigationController(rootViewController: BasketViewController())
@@ -63,8 +65,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
              animated: false
          )
 
-         tabBar.tabBar.unselectedItemTintColor = .gray
-         tabBar.tabBar.backgroundColor = UIColor(red: 0.07, green: 0.07, blue: 0.07, alpha: 1.00)
+        tabBar.tabBar.unselectedItemTintColor = UIColor(named: Constants.unselectedTabBar)
+        tabBar.tabBar.backgroundColor = UIColor(named: Constants.tabColor)
 
          window?.rootViewController = tabBar
          window?.makeKeyAndVisible()
