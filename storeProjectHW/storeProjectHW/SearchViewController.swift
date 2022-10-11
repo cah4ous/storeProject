@@ -20,19 +20,19 @@ final class SearchViewController: UIViewController {
         static let airpods = "AirPods"
         static let appleCare = "AppleCare"
         static let beats = "Beats"
+        static let backButtonItem = "Поиск"
         static let compare = "Cравнение модели iPhone"
         static let clear = "Очистить"
         static let searchProduct = " Поиск по продуктам и магазинам"
-        static let blackImage = "Image"
-        static let strapImage = "4"
-        static let brownCaseImg = "2"
-        static let blackCaseImageTwo = "case2"
-        static let blackCaseImageThree = "case3"
-        static let brownCaseImgTwo = "caseBrown2"
-        static let brownCaseImgThree = "caseBrown3"
-        static let strapImgTwo = "clock2"
-        static let iphoneImg = "iphone12"
-        static let backButtonItem = "Поиск"
+        static let blackImageName = "Image"
+        static let strapImageName = "4"
+        static let brownCaseImgName = "2"
+        static let blackCaseImageNameTwo = "case2"
+        static let blackCaseImageNameThree = "case3"
+        static let brownCaseImgNameTwo = "caseBrown2"
+        static let brownCaseImgNameThree = "caseBrown3"
+        static let strapImgNameTwo = "clock2"
+        static let iphoneImgName = "iphone12"
         static let mainTextColor = "mainTextColor"
         static let searchColor = "searchaColor"
         static let tabColor = "tabColor"
@@ -168,27 +168,27 @@ final class SearchViewController: UIViewController {
          switch gest.view?.tag {
          case 0:
              infoProductViewController.images = [
-                Constants.blackImage,
-                Constants.blackCaseImageTwo,
-                Constants.blackCaseImageThree
+                Constants.blackImageName,
+                Constants.blackCaseImageNameTwo,
+                Constants.blackCaseImageNameThree
              ]
              infoProductViewController.productInfo = Constants.blackCase
          case 1:
              infoProductViewController.images = [
-                Constants.strapImage,
-                Constants.strapImgTwo
+                Constants.strapImageName,
+                Constants.strapImgNameTwo
              ]
              infoProductViewController.productInfo = Constants.watch
          case 2:
              infoProductViewController.images = [
-                Constants.brownCaseImg,
-                Constants.brownCaseImgTwo,
-                Constants.brownCaseImgThree
+                Constants.brownCaseImgName,
+                Constants.brownCaseImgNameTwo,
+                Constants.brownCaseImgNameThree
              ]
              infoProductViewController.productInfo = Constants.brownCase
          case 3:
              infoProductViewController.images = [
-                Constants.iphoneImg
+                Constants.iphoneImgName
              ]
              infoProductViewController.productInfo = Constants.iphoneInfo
          default:
@@ -220,25 +220,25 @@ final class SearchViewController: UIViewController {
         createProductText(text: Constants.compare, frame: CGRect(x: 40, y: 640, width: 300, height: 50))
         
         createProduct(text: Constants.blackCase,
-                     imageName: Constants.blackImage,
+                     imageName: Constants.blackImageName,
                      frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                      tag: 0, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: blackCaseView
         )
         createProduct(text: Constants.watch,
-                      imageName: Constants.strapImage,
+                      imageName: Constants.strapImageName,
                       frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                       tag: 1, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: watchbandView
         )
         createProduct(text: Constants.brownCase,
-                      imageName: Constants.brownCaseImg,
+                      imageName: Constants.brownCaseImgName,
                       frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                       tag: 2, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: brownCaseView
         )
         createProduct(text: Constants.iphoneInfo,
-                      imageName: Constants.iphoneImg,
+                      imageName: Constants.iphoneImgName,
                       frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                       tag: 3, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: phoneCaseView

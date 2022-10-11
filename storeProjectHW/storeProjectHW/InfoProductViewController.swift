@@ -21,9 +21,9 @@ final class InfoProductViewController: UIViewController {
         static let basketButton = "Добавить в корзину"
         static let price = "3 990.00 руб."
         static let images = ["4", "2", "case2"]
-        static let gray = "searchaColor"
+        static let grayColor = "searchaColor"
         static let textColor = "mainTextColor"
-        static let viewBack = "viewBackColor"
+        static let viewBackColor = "viewBackColor"
     }
     
     // MARK: - Private Visual Components
@@ -41,7 +41,7 @@ final class InfoProductViewController: UIViewController {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 12)
         label.frame = CGRect(x: 90, y: 560, width: 100, height: 40)
-        label.textColor = UIColor(named: Constants.gray)
+        label.textColor = UIColor(named: Constants.grayColor)
         label.text = Constants.with
         
         return label
@@ -81,7 +81,7 @@ final class InfoProductViewController: UIViewController {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 12)
         label.frame = CGRect(x: 40, y: 715, width: 300, height: 15)
-        label.textColor = UIColor(named: Constants.gray)
+        label.textColor = UIColor(named: Constants.grayColor)
         label.text = Constants.forFree
         
         return label
@@ -97,7 +97,7 @@ final class InfoProductViewController: UIViewController {
         return label
     }()
     
-    private lazy var withImage: UIImageView = {
+    private lazy var withImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 60, y: 570, width: 20, height: 20)
         imageView.image = UIImage(systemName: Constants.checkMark)
@@ -105,7 +105,7 @@ final class InfoProductViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var boxImage: UIImageView = {
+    private lazy var boxImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 5, y: 700, width: 20, height: 20)
         imageView.image = UIImage(systemName: Constants.box)
@@ -138,7 +138,7 @@ final class InfoProductViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15)
         label.frame = CGRect(x: 155, y: 142, width: 100, height: 30)
-        label.textColor = UIColor(named: Constants.gray)
+        label.textColor = UIColor(named: Constants.grayColor)
         label.text = Constants.price
         
         return label
@@ -174,15 +174,15 @@ final class InfoProductViewController: UIViewController {
     }
     
     private func configureViews() {
-        view.backgroundColor = UIColor(named: Constants.viewBack)
+        view.backgroundColor = UIColor(named: Constants.viewBackColor)
         view.addSubview(grayButton)
         view.addSubview(blackButton)
         view.addSubview(priceLabel)
         view.addSubview(addToBasketButton)
-        view.addSubview(withImage)
+        view.addSubview(withImageView)
         view.addSubview(withLabel)
         view.addSubview(withMacLabel)
-        view.addSubview(boxImage)
+        view.addSubview(boxImageView)
         view.addSubview(todayLabel)
         view.addSubview(forFreeLabel)
         view.addSubview(deliveryLabel)
@@ -213,7 +213,7 @@ final class InfoProductViewController: UIViewController {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 10)
         label.frame = CGRect(x: 5, y: 460, width: 380, height: 40)
-        label.textColor = UIColor(named: Constants.gray)
+        label.textColor = UIColor(named: Constants.grayColor)
         label.textAlignment = .center
         label.text = productInfo
         
