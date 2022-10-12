@@ -222,6 +222,7 @@ final class PersonViewController: UIViewController {
         button.frame = CGRect(x: 300, y: 40, width: 50, height: 50)
         button.setBackgroundImage(UIImage(systemName: Constants.avatarImageName), for: .normal)
         button.layer.cornerRadius = 25
+        button.clipsToBounds = true
         button.tintColor = .gray
 
         return button
@@ -330,13 +331,23 @@ extension PersonViewController: UIImagePickerControllerDelegate {
      func imagePickerController(_ picker: UIImagePickerController,
                                 didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
          picker.dismiss(animated: true)
-         guard let image = info[.editedImage] as? UIImage else { return }
-    
-         avatarButton.setBackgroundImage(image, for: .normal)
-         guard let imageData = image.pngData() else { return }
-         UserDefaults.standard.set(imageData, forKey: Constants.avatarKey)
+         if let image = info[.originalImage] as? UIImage {
+             let img = image.resizeImage(to: CGSize(width: 50, height: 50))
+             avatarButton.setImage(img, for: .normal)
+             guard let imageData = image.pngData() else { return }
+             UserDefaults.standard.set(imageData, forKey: Constants.avatarKey)
+         }
+         self.dismiss(animated: true)
      }
  }
 
 extension PersonViewController: UINavigationControllerDelegate {
+}
+
+extension UIImage {
+    func resizeImage(to size: CGSize) -> UIImage {
+        return UIGraphicsImageRenderer(size: size).image { _ in
+            draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
 }
