@@ -173,12 +173,14 @@ final class SearchViewController: UIViewController {
                 Constants.blackCaseImageNameThree
              ]
              infoProductViewController.productInfo = Constants.blackCase
+             infoProductViewController.productTag = 0
          case 1:
              infoProductViewController.images = [
                 Constants.strapImageName,
                 Constants.strapImgNameTwo
              ]
              infoProductViewController.productInfo = Constants.watch
+             infoProductViewController.productTag = 1
          case 2:
              infoProductViewController.images = [
                 Constants.brownCaseImgName,
@@ -186,11 +188,13 @@ final class SearchViewController: UIViewController {
                 Constants.brownCaseImgNameThree
              ]
              infoProductViewController.productInfo = Constants.brownCase
+             infoProductViewController.productTag = 2
          case 3:
              infoProductViewController.images = [
                 Constants.iphoneImgName
              ]
              infoProductViewController.productInfo = Constants.iphoneInfo
+             infoProductViewController.productTag = 3
          default:
              break
          }

@@ -10,6 +10,7 @@ import UIKit
 final class InfoProductViewController: UIViewController {
     private enum Constants {
         static let with = "Совместимо с"
+        static let prodTag = 0
         static let blackButtonImage = "blackButtonImage"
         static let grayButtonImage = "grayButtonImage"
         static let today = "Заказ сегодня в течение дня, доставка:"
@@ -147,17 +148,34 @@ final class InfoProductViewController: UIViewController {
     // MARK: - Public Properties
     var images = Constants.images
     var productInfo = Constants.macBook
+    var productTag = Constants.prodTag
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initMethods()
+        myScrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
     // MARK: - Private objc methods
-    @objc private func rightHandAction() {
-        
-    }
     
+    @objc private func handleTap(gest: UIGestureRecognizer) {
+        let webProductViewController = WebViewController()
+        switch productTag {
+        case 0:
+            webProductViewController.urlOfContent = "https://re-store.ru/catalog/P058-109-15/"
+        case 1:
+            webProductViewController.urlOfContent = "https://re-store.ru/search/?q=Спортивный%20ремешок%20Black%20Unity"
+        case 2:
+            webProductViewController.urlOfContent = "https://re-store.ru/catalog/NM7MDT0M00/"
+        case 3:
+            webProductViewController.urlOfContent = "https://re-store.ru/catalog/MGDC3RU-A/"
+        default:
+            break
+        }
+        
+        navigationController?.present(webProductViewController, animated: true)
+        
+     }
     // MARK: - Private methods
     private func initMethods() {
         configureViews()
