@@ -35,9 +35,9 @@ final class PersonViewController: UIViewController {
     // MARK: - Private Visual Components
     private lazy var mainScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.frame = CGRect(x: 0, y: 300, width: view.bounds.width, height: view.bounds.height)
-        scrollView.contentInset = UIEdgeInsets(top: -290, left: 0, bottom: 0, right: 0)
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: 1300)
+        scrollView.frame = CGRect(x: 0, y: 400, width: view.bounds.width, height: view.bounds.height)
+        scrollView.contentInset = UIEdgeInsets(top: -400, left: 0, bottom: 0, right: 0)
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: 1400)
         
         return scrollView
     }()
