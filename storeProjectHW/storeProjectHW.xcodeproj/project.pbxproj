@@ -13,6 +13,7 @@
 		71514D2028F566E10001A2B8 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71514D1F28F566E10001A2B8 /* MainTabBarViewController.swift */; };
 		7154A55E28F1E301005557CA /* InfoProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7154A55D28F1E301005557CA /* InfoProductViewController.swift */; };
 		7154A56028F21EC3005557CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7154A55F28F21EC3005557CA /* Assets.xcassets */; };
+		715D2AAC28F5DCA0008F7103 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715D2AAB28F5DCA0008F7103 /* WebViewController.swift */; };
 		7169AA1028F013A600920F27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169AA0F28F013A600920F27 /* AppDelegate.swift */; };
 		7169AA1228F013A600920F27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169AA1128F013A600920F27 /* SceneDelegate.swift */; };
 		7169AA1428F013A600920F27 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169AA1328F013A600920F27 /* BuyViewController.swift */; };
@@ -28,6 +29,7 @@
 		71514D1F28F566E10001A2B8 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		7154A55D28F1E301005557CA /* InfoProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoProductViewController.swift; sourceTree = "<group>"; };
 		7154A55F28F21EC3005557CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/Assets.xcassets"; sourceTree = "<group>"; };
+		715D2AAB28F5DCA0008F7103 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		7169AA0C28F013A600920F27 /* storeProjectHW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = storeProjectHW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7169AA0F28F013A600920F27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7169AA1128F013A600920F27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				713F8EFC28F0155D002E4D05 /* SearchViewController.swift */,
 				71514D1F28F566E10001A2B8 /* MainTabBarViewController.swift */,
 				7154A55D28F1E301005557CA /* InfoProductViewController.swift */,
+				715D2AAB28F5DCA0008F7103 /* WebViewController.swift */,
 				7169AA1A28F013A800920F27 /* LaunchScreen.storyboard */,
 				7154A55F28F21EC3005557CA /* Assets.xcassets */,
 				717948AC28F2F8E30012B8B4 /* Colors.xcassets */,
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7154A55E28F1E301005557CA /* InfoProductViewController.swift in Sources */,
+				715D2AAC28F5DCA0008F7103 /* WebViewController.swift in Sources */,
 				713F8EFF28F01592002E4D05 /* PersonViewController.swift in Sources */,
 				71514D2028F566E10001A2B8 /* MainTabBarViewController.swift in Sources */,
 				713F8EFD28F0155D002E4D05 /* SearchViewController.swift in Sources */,

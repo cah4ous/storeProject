@@ -34,7 +34,7 @@ final class MainTabBarViewController: UITabBarController {
           image: UIImage(systemName: Constants.laptopAndPhoneImageName),
           tag: 1
       )
-      private let personViewController = PersonViewController()
+      private let personViewController = UINavigationController(rootViewController: PersonViewController())
       private let personTabBarItem = UITabBarItem(
         title: Constants.personTitle,
         image: UIImage(systemName: Constants.personImageName),

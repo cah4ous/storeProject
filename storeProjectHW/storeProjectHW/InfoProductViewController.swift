@@ -10,6 +10,7 @@ import UIKit
 final class InfoProductViewController: UIViewController {
     private enum Constants {
         static let with = "Совместимо с"
+        static let prodTag = 0
         static let blackButtonImage = "blackButtonImage"
         static let grayButtonImage = "grayButtonImage"
         static let today = "Заказ сегодня в течение дня, доставка:"
@@ -24,6 +25,10 @@ final class InfoProductViewController: UIViewController {
         static let grayColor = "searchaColor"
         static let textColor = "mainTextColor"
         static let viewBackColor = "viewBackColor"
+        static let firstProductUrl = "https://re-store.ru/catalog/P058-109-15/"
+        static let secondProductUrl = "https://re-store.ru/search/?q=Спортивный%20ремешок%20Black%20Unity"
+        static let thirdProductUrl = "https://re-store.ru/catalog/NM7MDT0M00/"
+        static let forthProductUrl = "https://re-store.ru/catalog/MGDC3RU-A/"
     }
     
     // MARK: - Private Visual Components
@@ -37,7 +42,7 @@ final class InfoProductViewController: UIViewController {
         return scrollView
     }()
     
-    private lazy var withLabel: UILabel = {
+    private var withLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 12)
         label.frame = CGRect(x: 90, y: 560, width: 100, height: 40)
@@ -47,7 +52,7 @@ final class InfoProductViewController: UIViewController {
         return label
     }()
     
-    private lazy var blackButton: UIButton = {
+    private var blackButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .black
         button.layer.cornerRadius = 20
@@ -67,7 +72,7 @@ final class InfoProductViewController: UIViewController {
         return button
     }()
     
-    private lazy var todayLabel: UILabel = {
+    private var todayLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 12)
         label.frame = CGRect(x: 40, y: 700, width: 300, height: 15)
@@ -77,7 +82,7 @@ final class InfoProductViewController: UIViewController {
         return label
     }()
     
-    private lazy var forFreeLabel: UILabel = {
+    private var forFreeLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 12)
         label.frame = CGRect(x: 40, y: 715, width: 300, height: 15)
@@ -87,7 +92,7 @@ final class InfoProductViewController: UIViewController {
         return label
     }()
     
-    private lazy var deliveryLabel: UILabel = {
+    private var deliveryLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 12)
         label.frame = CGRect(x: 40, y: 730, width: 330, height: 15)
@@ -97,7 +102,7 @@ final class InfoProductViewController: UIViewController {
         return label
     }()
     
-    private lazy var withImageView: UIImageView = {
+    private var withImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 60, y: 570, width: 20, height: 20)
         imageView.image = UIImage(systemName: Constants.checkMark)
@@ -105,7 +110,7 @@ final class InfoProductViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var boxImageView: UIImageView = {
+    private var boxImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 5, y: 700, width: 20, height: 20)
         imageView.image = UIImage(systemName: Constants.box)
@@ -113,7 +118,7 @@ final class InfoProductViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var withMacLabel: UILabel = {
+    private var withMacLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 12)
         label.frame = CGRect(x: 185, y: 560, width: 150, height: 40)
@@ -134,7 +139,7 @@ final class InfoProductViewController: UIViewController {
         return button
     }()
     
-    private lazy var priceLabel: UILabel = {
+    private var priceLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15)
         label.frame = CGRect(x: 155, y: 142, width: 100, height: 30)
@@ -147,17 +152,34 @@ final class InfoProductViewController: UIViewController {
     // MARK: - Public Properties
     var images = Constants.images
     var productInfo = Constants.macBook
+    var productTag = Constants.prodTag
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initMethods()
+        myScrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
     // MARK: - Private objc methods
-    @objc private func rightHandAction() {
-        
-    }
     
+    @objc private func handleTap(gest: UIGestureRecognizer) {
+        let webProductViewController = WebViewController()
+        switch productTag {
+        case 0:
+            webProductViewController.urlOfContent = Constants.firstProductUrl
+        case 1:
+            webProductViewController.urlOfContent = Constants.secondProductUrl
+        case 2:
+            webProductViewController.urlOfContent = Constants.thirdProductUrl
+        case 3:
+            webProductViewController.urlOfContent = Constants.forthProductUrl
+        default:
+            break
+        }
+        
+        navigationController?.present(webProductViewController, animated: true)
+        
+     }
     // MARK: - Private methods
     private func initMethods() {
         configureViews()
