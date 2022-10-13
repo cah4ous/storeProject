@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 /// Экран web
-class WebViewController: UITabBarController {
+final class WebViewController: UITabBarController {
     private enum Constants {
         static let mainUrl = "https://www.apple.com"
         static let backButtonImage = "chevron.backward"
@@ -19,7 +19,7 @@ class WebViewController: UITabBarController {
     }
 
     // MARK: Private Visual Components
-    private lazy var backButton: UIButton = {
+    private var backButton: UIButton = {
         var button = UIButton()
         button.frame = CGRect(x: 15, y: 10, width: 30, height: 30)
         button.setImage(UIImage(systemName: Constants.backButtonImage), for: .normal)
@@ -27,7 +27,7 @@ class WebViewController: UITabBarController {
         return button
     }()
     
-    private lazy var forwardButton: UIButton = {
+    private var forwardButton: UIButton = {
         var button = UIButton()
         button.frame = CGRect(x: 50, y: 10, width: 30, height: 30)
         button.setImage(UIImage(systemName: Constants.forwardButtonImage), for: .normal)
@@ -35,7 +35,7 @@ class WebViewController: UITabBarController {
         return button
     }()
     
-    private lazy var refreshButton: UIButton = {
+    private var refreshButton: UIButton = {
         var button = UIButton()
         button.frame = CGRect(x: 315, y: 10, width: 30, height: 30)
         button.setImage(UIImage(systemName: Constants.refreshButtonImage), for: .normal)
@@ -43,7 +43,7 @@ class WebViewController: UITabBarController {
         return button
     }()
     
-    private lazy var shareButton: UIButton = {
+    private var shareButton: UIButton = {
         var button = UIButton()
         button.frame = CGRect(x: 345, y: 10, width: 30, height: 30)
         button.setImage(UIImage(systemName: Constants.shareButtonImage), for: .normal)
@@ -51,7 +51,7 @@ class WebViewController: UITabBarController {
         return button
     }()
     
-    private lazy var progressView: UIProgressView = {
+    private var progressView: UIProgressView = {
         var newProgressView = UIProgressView()
         newProgressView.frame = CGRect(x: 80, y: 22, width: 230, height: 1)
         
@@ -76,11 +76,6 @@ class WebViewController: UITabBarController {
     private var estimatedProgressObserver: NSKeyValueObservation?
     
     // MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         initMethods()

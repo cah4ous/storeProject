@@ -50,7 +50,7 @@ final class PersonViewController: UIViewController {
         return scrollView
     }()
      
-    private lazy var mainImageView: UIImageView = {
+    private var mainImageView: UIImageView = {
         let imageView = UIImageView()
        imageView.image = UIImage(named: Constants.airpodsImageName)
        imageView.frame = CGRect(x: 35, y: 270, width: 55, height: 55)
@@ -59,7 +59,7 @@ final class PersonViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var orderLabel: UILabel = {
+    private var orderLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 17)
         label.frame = CGRect(x: 110, y: 220, width: 240, height: 120)
@@ -70,7 +70,7 @@ final class PersonViewController: UIViewController {
         return label
     }()
     
-    private lazy var countOrderLabel: UILabel = {
+    private var countOrderLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.frame = CGRect(x: 110, y: 250, width: 240, height: 120)
@@ -81,7 +81,7 @@ final class PersonViewController: UIViewController {
         return label
     }()
     
-    private lazy var treatmentLabel: UILabel = {
+    private var treatmentLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 10)
         label.frame = CGRect(x: 30, y: 330, width: 140, height: 100)
@@ -91,7 +91,7 @@ final class PersonViewController: UIViewController {
         return label
     }()
     
-    private lazy var sendedtLabel: UILabel = {
+    private var sendedtLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 10)
         label.frame = CGRect(x: 170, y: 330, width: 140, height: 100)
@@ -101,7 +101,7 @@ final class PersonViewController: UIViewController {
         return label
     }()
     
-    private lazy var deliveredLabel: UILabel = {
+    private var deliveredLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 10)
         label.frame = CGRect(x: 290, y: 330, width: 140, height: 100)
@@ -111,7 +111,7 @@ final class PersonViewController: UIViewController {
         return label
     }()
     
-    private lazy var chevronImageView: UIImageView = {
+    private var chevronImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: Constants.chevronForward)
         imageView.tintColor = .systemGray2
@@ -120,7 +120,7 @@ final class PersonViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var productView: UIView = {
+    private var productView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.frame = CGRect(x: 20, y: 250, width: 350, height: 140)
@@ -133,7 +133,7 @@ final class PersonViewController: UIViewController {
         return view
     }()
     
-    private lazy var newsLabel: UILabel = {
+    private var newsLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 28)
         label.frame = CGRect(x: 20, y: 170, width: 240, height: 100)
@@ -143,7 +143,7 @@ final class PersonViewController: UIViewController {
         return label
     }()
     
-    private lazy var recomendedLabel: UILabel = {
+    private var recomendedLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 24)
         label.frame = CGRect(x: 20, y: 450, width: 240, height: 100)
@@ -153,7 +153,7 @@ final class PersonViewController: UIViewController {
         return label
     }()
     
-    private lazy var recomendedImageView: UIImageView = {
+    private var recomendedImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: Constants.recommendedImageName)
         imageView.frame = CGRect(x: 40, y: 550, width: 40, height: 40)
@@ -162,7 +162,7 @@ final class PersonViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var deliveryProgressView: UIProgressView = {
+    private var deliveryProgressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.setProgress(0.4, animated: true)
         progressView.frame = CGRect(x: 30, y: 360, width: 328, height: 30)
@@ -173,7 +173,7 @@ final class PersonViewController: UIViewController {
         return progressView
     }()
     
-    private lazy var recomendedNewsLabel: UILabel = {
+    private var recomendedNewsLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 15)
         label.frame = CGRect(x: 120, y: 520, width: 240, height: 120)
@@ -184,7 +184,7 @@ final class PersonViewController: UIViewController {
         return label
     }()
     
-    private lazy var recomendedNotificationsLabel: UILabel = {
+    private var recomendedNotificationsLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         label.frame = CGRect(x: 120, y: 565, width: 240, height: 120)
@@ -195,7 +195,7 @@ final class PersonViewController: UIViewController {
         return label
     }()
     
-    private lazy var devicesLabel: UILabel = {
+    private var devicesLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 28)
         label.frame = CGRect(x: 20, y: 660, width: 240, height: 100)
@@ -205,7 +205,7 @@ final class PersonViewController: UIViewController {
         return label
     }()
     
-    private lazy var showAllButton: UIButton = {
+    private var showAllButton: UIButton = {
         let button = UIButton()
         button.setTitle(Constants.showAllText, for: .normal)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
@@ -215,7 +215,7 @@ final class PersonViewController: UIViewController {
         return button
     }()
     
-    private lazy var avatarButton: UIButton = {
+    private var avatarButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 180, y: 100, width: 30, height: 30)
         button.setBackgroundImage(UIImage(systemName: Constants.avatarImageName), for: .normal)
@@ -244,12 +244,14 @@ final class PersonViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
          overrideUserInterfaceStyle = .light
          navigationController?.overrideUserInterfaceStyle = .light
          tabBarController?.overrideUserInterfaceStyle = .light
      }
 
      override func viewWillDisappear(_ animated: Bool) {
+         super.viewWillDisappear(animated)
          overrideUserInterfaceStyle = .dark
          navigationController?.overrideUserInterfaceStyle = .dark
          tabBarController?.overrideUserInterfaceStyle = .dark
@@ -377,8 +379,10 @@ final class PersonViewController: UIViewController {
     
     private func setupAvatarButtonImage() {
         let userDefaults = UserDefaults.standard
-        guard let data = userDefaults.object(forKey: Constants.avatarKey) as? Data else { return }
-        guard let imageData = UIImage(data: data) else { return }
+        guard let data = userDefaults.object(forKey: Constants.avatarKey) as? Data,
+              let imageData = UIImage(data: data)
+        else { return }
+//        guard let imageData = UIImage(data: data) else { return }
         let img = imageData.resizeImage(to: CGSize(width: 30, height: 30))
         avatarImageView.image = img
      }
@@ -395,12 +399,13 @@ extension PersonViewController: UIImagePickerControllerDelegate {
              guard let imageData = image.pngData() else { return }
              UserDefaults.standard.set(imageData, forKey: Constants.avatarKey)
          }
-         self.dismiss(animated: true)
+         dismiss(animated: true)
      }
  }
 
+/// UIScrollViewDelegate
 extension PersonViewController: UIScrollViewDelegate {
-    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let height = navigationController?.navigationBar.frame.height else { return }
         moveAndResizeImage(for: height)
     }
@@ -410,7 +415,7 @@ extension PersonViewController: UIScrollViewDelegate {
 extension PersonViewController: UINavigationControllerDelegate {
 }
 
-/// UIImage
+/// Добавляет возможность урезать изображение до заданных размеров
 extension UIImage {
     func resizeImage(to size: CGSize) -> UIImage {
         return UIGraphicsImageRenderer(size: size).image { _ in
