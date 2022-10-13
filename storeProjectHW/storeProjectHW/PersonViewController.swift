@@ -30,28 +30,26 @@ final class PersonViewController: UIViewController {
         static let airpodsImageName = "apple-airpod"
         static let recommendedImageName = "app.badge"
         static let avatarImageName = "person.fill"
+ 
+        static let ImageSizeForLargeState: CGFloat = 40
+        static let ImageRightMargin: CGFloat = 16
+        static let ImageBottomMarginForLargeState: CGFloat = 12
+        static let ImageBottomMarginForSmallState: CGFloat = 6
+        static let ImageSizeForSmallState: CGFloat = 32
+        static let NavBarHeightSmallState: CGFloat = 44
+        static let NavBarHeightLargeState: CGFloat = 96.5
     }
     
     // MARK: - Private Visual Components
     private lazy var mainScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.frame = CGRect(x: 0, y: 400, width: view.bounds.width, height: view.bounds.height)
-        scrollView.contentInset = UIEdgeInsets(top: -400, left: 0, bottom: 0, right: 0)
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: 1400)
+        scrollView.frame = view.frame
+        scrollView.contentInset = UIEdgeInsets(top: -200, left: 0, bottom: 0, right: 0)
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: 1000)
         
         return scrollView
     }()
-    
-    private lazy var forYouLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 35)
-        label.frame = CGRect(x: 20, y: 100, width: 140, height: 100)
-        label.textColor = UIColor(named: Constants.mainTextColor)
-        label.text = Constants.forYouText
-        
-        return label
-    }()
-    
+     
     private lazy var mainImageView: UIImageView = {
         let imageView = UIImageView()
        imageView.image = UIImage(named: Constants.airpodsImageName)
@@ -138,7 +136,7 @@ final class PersonViewController: UIViewController {
     private lazy var newsLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 28)
-        label.frame = CGRect(x: 20, y: 155, width: 240, height: 100)
+        label.frame = CGRect(x: 20, y: 170, width: 240, height: 100)
         label.textColor = UIColor(named: Constants.mainTextColor)
         label.text = Constants.newsText
         
@@ -219,13 +217,24 @@ final class PersonViewController: UIViewController {
     
     private lazy var avatarButton: UIButton = {
         let button = UIButton()
-        button.frame = CGRect(x: 300, y: 40, width: 50, height: 50)
+        button.frame = CGRect(x: 180, y: 100, width: 30, height: 30)
         button.setBackgroundImage(UIImage(systemName: Constants.avatarImageName), for: .normal)
-        button.layer.cornerRadius = 25
+        button.layer.cornerRadius = 15
         button.clipsToBounds = true
         button.tintColor = .gray
 
         return button
+    }()
+    
+    private let avatarImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = Constants.ImageSizeForLargeState / 2
+        imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
+        imageView.image = UIImage(systemName: Constants.avatarImageName)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
     }()
     
     // MARK: - Lifecycle
@@ -247,8 +256,7 @@ final class PersonViewController: UIViewController {
      }
     
     // MARK: - Private Objc Methods
-    
-    @objc private func avatarButtonAction(_ sender: UIButton) {
+    @objc private func avatarImageViewAction() {
          let imagePickerController = UIImagePickerController()
          imagePickerController.sourceType = .photoLibrary
          imagePickerController.allowsEditing = true
@@ -259,11 +267,12 @@ final class PersonViewController: UIViewController {
     // MARK: - Private Methods
     private func initMethods() {
         configureViews()
+        mainScrollView.delegate = self
         settingsView()
         setupAvatarButtonImage()
         addTargets()
         
-        createGrayLine(frame: CGRect(x: 5, y: 150, width: view.bounds.width - 7, height: 2))
+        createGrayLine(frame: CGRect(x: 5, y: 200, width: view.bounds.width - 7, height: 2))
         createGrayLine(frame: CGRect(x: 20, y: 335, width: 360, height: 2))
         
         createChevronImageView(frame: CGRect(x: 340, y: 290, width: 12, height: 12))
@@ -271,22 +280,64 @@ final class PersonViewController: UIViewController {
     
     private func settingsView() {
         title = Constants.forYouText
-        navigationController?.navigationBar.addSubview(avatarButton)
+        
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        navigationBar.addSubview(avatarImageView)
+
+        NSLayoutConstraint.activate([
+            avatarImageView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor,
+                                             constant: -Constants.ImageRightMargin),
+            avatarImageView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor,
+                                              constant: -Constants.ImageBottomMarginForLargeState),
+            avatarImageView.heightAnchor.constraint(equalToConstant: Constants.ImageSizeForLargeState),
+            avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor)
+            ])
+        
+    }
+    
+    private func moveAndResizeImage(for height: CGFloat) {
+        let coeff: CGFloat = {
+            let delta = height - Constants.NavBarHeightSmallState
+            let heightDifferenceBetweenStates = (Constants.NavBarHeightLargeState - Constants.NavBarHeightSmallState)
+            return delta / heightDifferenceBetweenStates
+        }()
+
+        let factor = Constants.ImageSizeForSmallState / Constants.ImageSizeForLargeState
+
+        let scale: CGFloat = {
+            let sizeAddendumFactor = coeff * (1.0 - factor)
+            return min(1.0, sizeAddendumFactor + factor)
+        }()
+
+        let sizeDiff = Constants.ImageSizeForLargeState * (1.0 - factor)
+
+        let yTranslation: CGFloat = {
+            let maxYTranslation = Constants.ImageBottomMarginForLargeState
+            - Constants.ImageBottomMarginForSmallState + sizeDiff
+            return max(0,
+                       min(maxYTranslation,
+                           (maxYTranslation - coeff * (Constants.ImageBottomMarginForSmallState + sizeDiff))))
+        }()
+
+        let xTranslation = max(0, sizeDiff - coeff * sizeDiff)
+
+        avatarImageView.transform = CGAffineTransform.identity
+            .scaledBy(x: scale, y: scale)
+            .translatedBy(x: xTranslation, y: yTranslation)
     }
     
     private func configureViews() {
-        view.addSubview(productView)
-        view.addSubview(newsLabel)
-        view.addSubview(mainScrollView)
-        view.addSubview(deliveryProgressView)
-        view.addSubview(treatmentLabel)
-        view.addSubview(sendedtLabel)
-        view.addSubview(deliveredLabel)
-        view.addSubview(orderLabel)
-        view.addSubview(countOrderLabel)
-        view.addSubview(mainImageView)
-        
+        mainScrollView.addSubview(productView)
+        mainScrollView.addSubview(newsLabel)
+        mainScrollView.addSubview(deliveryProgressView)
+        mainScrollView.addSubview(treatmentLabel)
+        mainScrollView.addSubview(sendedtLabel)
+        mainScrollView.addSubview(deliveredLabel)
+        mainScrollView.addSubview(orderLabel)
+        mainScrollView.addSubview(countOrderLabel)
+        mainScrollView.addSubview(mainImageView)
         mainScrollView.addSubview(devicesLabel)
         mainScrollView.addSubview(showAllButton)
         mainScrollView.addSubview(recomendedImageView)
@@ -294,6 +345,8 @@ final class PersonViewController: UIViewController {
         mainScrollView.addSubview(recomendedNotificationsLabel)
         mainScrollView.addSubview(recomendedNewsLabel)
         mainScrollView.addSubview(chevronImageView)
+        
+        view.addSubview(mainScrollView)
         
         view.backgroundColor = UIColor(named: Constants.viewBackColor)
     }
@@ -303,7 +356,7 @@ final class PersonViewController: UIViewController {
         lineView.frame = frame
         lineView.setUnderLine()
         
-        view.addSubview(lineView)
+        mainScrollView.addSubview(lineView)
     }
     
     private func createChevronImageView(frame: CGRect) {
@@ -312,28 +365,33 @@ final class PersonViewController: UIViewController {
         imageView.tintColor = .systemGray2
         imageView.frame = frame
         
-        view.addSubview(imageView)
+        mainScrollView.addSubview(imageView)
     }
     
     private func addTargets() {
-        avatarButton.addTarget(self, action: #selector(avatarButtonAction), for: .touchUpInside)
+        avatarImageView.addGestureRecognizer(
+            UITapGestureRecognizer(target: self,
+                                   action: #selector(avatarImageViewAction))
+        )
     }
     
     private func setupAvatarButtonImage() {
         let userDefaults = UserDefaults.standard
         guard let data = userDefaults.object(forKey: Constants.avatarKey) as? Data else { return }
         guard let imageData = UIImage(data: data) else { return }
-        avatarButton.setBackgroundImage(imageData, for: .normal)
+        let img = imageData.resizeImage(to: CGSize(width: 30, height: 30))
+        avatarImageView.image = img
      }
 }
 
+/// UIImagePickerControllerDelegate
 extension PersonViewController: UIImagePickerControllerDelegate {
      func imagePickerController(_ picker: UIImagePickerController,
                                 didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
          picker.dismiss(animated: true)
          if let image = info[.originalImage] as? UIImage {
-             let img = image.resizeImage(to: CGSize(width: 50, height: 50))
-             avatarButton.setImage(img, for: .normal)
+             let img = image.resizeImage(to: CGSize(width: 30, height: 30))
+             avatarImageView.image = img
              guard let imageData = image.pngData() else { return }
              UserDefaults.standard.set(imageData, forKey: Constants.avatarKey)
          }
@@ -341,9 +399,18 @@ extension PersonViewController: UIImagePickerControllerDelegate {
      }
  }
 
+extension PersonViewController: UIScrollViewDelegate {
+    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let height = navigationController?.navigationBar.frame.height else { return }
+        moveAndResizeImage(for: height)
+    }
+}
+
+/// UINavigationControllerDelegate
 extension PersonViewController: UINavigationControllerDelegate {
 }
 
+/// UIImage
 extension UIImage {
     func resizeImage(to size: CGSize) -> UIImage {
         return UIGraphicsImageRenderer(size: size).image { _ in
