@@ -31,6 +31,8 @@ final class InfoProductViewController: UIViewController {
         static let forthProductUrl = "https://re-store.ru/catalog/MGDC3RU-A/"
     }
     
+    var product: Product?
+    
     // MARK: - Private Visual Components
     private lazy var myScrollView: UIScrollView = {
         var scrollView = UIScrollView()
@@ -164,33 +166,24 @@ final class InfoProductViewController: UIViewController {
     
     @objc private func handleTap(gest: UIGestureRecognizer) {
         let webProductViewController = WebViewController()
-        switch productTag {
-        case 0:
-            webProductViewController.urlOfContent = Constants.firstProductUrl
-        case 1:
-            webProductViewController.urlOfContent = Constants.secondProductUrl
-        case 2:
-            webProductViewController.urlOfContent = Constants.thirdProductUrl
-        case 3:
-            webProductViewController.urlOfContent = Constants.forthProductUrl
-        default:
-            break
-        }
+        guard let product = product else { return }
+        webProductViewController.urlOfContent = product.url
         
         navigationController?.present(webProductViewController, animated: true)
-        
      }
+    
     // MARK: - Private methods
     private func initMethods() {
         configureViews()
-        createProductLabel(name: productInfo)
-        createInfoProductLabel(name: productInfo)
-        addNewImages(images: images)
+        createProductLabel()
+        createInfoProductLabel()
+        addNewImages()
         settingsView()
     }
     
-    private func addNewImages(images: [String]) {
-        for image in images {
+    private func addNewImages() {
+        guard let product = product else { return }
+        for image in product.imageNames {
             addNewImageView(imageName: image)
         }
     }
@@ -211,14 +204,16 @@ final class InfoProductViewController: UIViewController {
         view.addSubview(myScrollView)
     }
     
-    private func createProductLabel(name: String) {
+    private func createProductLabel() {
+        guard let product = product else { return }
+        
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 17)
         label.frame = CGRect(x: 5, y: 100, width: 380, height: 50)
-        label.textColor = UIColor(named: Constants.textColor)
+        label.textColor = UIColor(named: product.name)
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.text = productInfo
+        label.text = product.name
         
         view.addSubview(label)
     }
@@ -231,13 +226,15 @@ final class InfoProductViewController: UIViewController {
         navigationItem.setRightBarButtonItems([heartButtonItem, shareButtonItem], animated: true)
      }
     
-    private func createInfoProductLabel(name: String) {
+    private func createInfoProductLabel() {
+        guard let product = product else { return }
+        
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 10)
         label.frame = CGRect(x: 5, y: 460, width: 380, height: 40)
         label.textColor = UIColor(named: Constants.grayColor)
         label.textAlignment = .center
-        label.text = productInfo
+        label.text = product.price
         
         view.addSubview(label)
     }
