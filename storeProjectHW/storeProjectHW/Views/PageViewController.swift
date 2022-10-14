@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol protocolPageViewController {
+protocol OnboardingBusinessLogic {
     func goForward(index: Int)
 }
 
@@ -87,7 +87,7 @@ final class PageViewController: UIPageViewController {
 }
 
 /// protocolPageViewController
-extension PageViewController: protocolPageViewController {
+extension PageViewController: OnboardingBusinessLogic {
     func goForward(index: Int) {
         newIndex = index
         guard let currentPage = viewControllers?.first,
@@ -103,9 +103,11 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if newIndex > 0 {
+            newIndex -= 1
+            print(newIndex)
             return presentViewControllerAtIndex(newIndex)
         } else {
-            return nil
+            return presentViewControllerAtIndex(newIndex)
         }
     }
 

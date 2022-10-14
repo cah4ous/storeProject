@@ -94,7 +94,7 @@ final class StoreViewController: UIViewController {
     var imageText = Constants.emptyText
     var currentPage = 0
     var numberOfPages = 0
-    var delegate: protocolPageViewController?
+    var delegate: OnboardingBusinessLogic?
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
