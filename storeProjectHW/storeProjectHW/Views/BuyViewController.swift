@@ -20,15 +20,12 @@ final class BuyViewController: UIViewController {
 
      // MARK: - Private methods
      private func startBeginPresent() {
-          let pageViewController = PageViewController(transitionStyle: .scroll,
-              navigationOrientation: .horizontal, options: nil)
-          present(pageViewController, animated: true, completion: nil)
-//         let userDefaults = UserDefaults.standard
-//         let presentationWasViewed = userDefaults.bool(forKey: Constants.isWatchedPresentation)
-//         if presentationWasViewed == false {
-//             let pageViewController = PageViewController(transitionStyle: .scroll,
-//                 navigationOrientation: .horizontal, options: nil)
-//             present(pageViewController, animated: true, completion: nil)
-//         }
+         let userDefaults = UserDefaults.standard
+         let presentationWasViewed = userDefaults.bool(forKey: Constants.isWatchedPresentation)
+         if presentationWasViewed == false {
+             let pageViewController = PageViewController(transitionStyle: .scroll,
+                 navigationOrientation: .horizontal, options: nil)
+             present(pageViewController, animated: true, completion: nil)
+         }
      }
 }

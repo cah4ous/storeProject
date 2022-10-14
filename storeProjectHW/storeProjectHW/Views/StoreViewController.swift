@@ -115,7 +115,6 @@ final class StoreViewController: UIViewController {
     // MARK: - Private Objc Methods
     @objc func goForwardAction(_ sender: UIButton) {
         if currentPage < numberOfPages {
-            print(currentPage)
             delegate?.goForward(index: currentPage)
         }
     }

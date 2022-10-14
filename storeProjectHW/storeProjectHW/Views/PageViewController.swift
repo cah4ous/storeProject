@@ -104,7 +104,6 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if newIndex > 0 {
             newIndex -= 1
-            print(newIndex)
             return presentViewControllerAtIndex(newIndex)
         } else {
             return presentViewControllerAtIndex(newIndex)
