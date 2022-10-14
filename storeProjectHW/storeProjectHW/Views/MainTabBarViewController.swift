@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 /// Настройка таббара
 final class MainTabBarViewController: UITabBarController {
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 /// Экран поиска
 final class SearchViewController: UIViewController {
     private enum Constants {
@@ -24,20 +25,50 @@ final class SearchViewController: UIViewController {
         static let compare = "Cравнение модели iPhone"
         static let clear = "Очистить"
         static let searchProduct = " Поиск по продуктам и магазинам"
-        static let blackImageName = "Image"
-        static let strapImageName = "4"
-        static let brownCaseImgName = "2"
-        static let blackCaseImageNameTwo = "case2"
-        static let blackCaseImageNameThree = "case3"
-        static let brownCaseImgNameTwo = "caseBrown2"
-        static let brownCaseImgNameThree = "caseBrown3"
-        static let strapImgNameTwo = "clock2"
-        static let iphoneImgName = "iphone12"
+        static let blackImagesNames = ["Image", "case2", "case3"]
+        static let strapImagesNames = ["4", "clock2"]
+        static let brownCaseImagesNames = ["2", "caseBrown2", "caseBrown3"]
+        static let iphoneImageName = ["iphone12"]
+        static let blackCasePrice = "3900"
+        static let brownCasePrice = "4200"
+        static let strapPrice = "8000"
+        static let iPhonePrice = "123000"
         static let mainTextColor = "mainTextColor"
         static let searchColor = "searchaColor"
         static let tabColor = "tabColor"
+        static let blackCaseUrlName = "https://re-store.ru/catalog/P058-109-15/"
+        static let sportStrapUrlName = "https://re-store.ru/search/?q=Спортивный%20ремешок%20Black%20Unity"
+        static let caseBrownUrlName = "https://re-store.ru/catalog/NM7MDT0M00/"
+        static let iPhoneUrlName = "https://re-store.ru/catalog/MGDC3RU-A/"
         static let viewBackColor = "viewBackColor"
     }
+    
+    private let products = [
+         Product(
+             name: Constants.blackCase,
+             imageNames: Constants.blackImagesNames,
+             price: Constants.blackCasePrice,
+             urlName: Constants.blackCaseUrlName
+         ),
+         Product(
+            name: Constants.watch,
+             imageNames: Constants.strapImagesNames,
+             price: Constants.strapPrice,
+             urlName: Constants.sportStrapUrlName
+         ),
+         Product(
+             name: Constants.brownCase,
+             imageNames: Constants.brownCaseImagesNames,
+             price: Constants.brownCasePrice,
+             urlName: Constants.caseBrownUrlName
+         ),
+         Product(
+             name: Constants.iphoneInfo,
+             imageNames: Constants.iphoneImageName,
+             price: Constants.iPhonePrice,
+             urlName: Constants.iPhoneUrlName
+         )
+     ]
 
     // MARK: - Private Visual Components
     private lazy var searchLabel: UILabel = {
@@ -164,40 +195,8 @@ final class SearchViewController: UIViewController {
     
     @objc private func handleTap(gest: UIGestureRecognizer) {
         let infoProductViewController = InfoProductViewController()
-        
-         switch gest.view?.tag {
-         case 0:
-             infoProductViewController.images = [
-                Constants.blackImageName,
-                Constants.blackCaseImageNameTwo,
-                Constants.blackCaseImageNameThree
-             ]
-             infoProductViewController.productInfo = Constants.blackCase
-             infoProductViewController.productTag = 0
-         case 1:
-             infoProductViewController.images = [
-                Constants.strapImageName,
-                Constants.strapImgNameTwo
-             ]
-             infoProductViewController.productInfo = Constants.watch
-             infoProductViewController.productTag = 1
-         case 2:
-             infoProductViewController.images = [
-                Constants.brownCaseImgName,
-                Constants.brownCaseImgNameTwo,
-                Constants.brownCaseImgNameThree
-             ]
-             infoProductViewController.productInfo = Constants.brownCase
-             infoProductViewController.productTag = 2
-         case 3:
-             infoProductViewController.images = [
-                Constants.iphoneImgName
-             ]
-             infoProductViewController.productInfo = Constants.iphoneInfo
-             infoProductViewController.productTag = 3
-         default:
-             break
-         }
+        guard let tag = gest.view?.tag else { return }
+        infoProductViewController.product = products[tag]
         
         let backButtonItem = UIBarButtonItem()
         backButtonItem.title = Constants.backButtonItem
@@ -224,25 +223,25 @@ final class SearchViewController: UIViewController {
         createProductText(text: Constants.compare, frame: CGRect(x: 40, y: 640, width: 300, height: 50))
         
         createProduct(text: Constants.blackCase,
-                     imageName: Constants.blackImageName,
+                     imageName: Constants.blackImagesNames[0],
                      frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                      tag: 0, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: blackCaseView
         )
         createProduct(text: Constants.watch,
-                      imageName: Constants.strapImageName,
+                      imageName: Constants.strapImagesNames[0],
                       frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                       tag: 1, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: watchbandView
         )
         createProduct(text: Constants.brownCase,
-                      imageName: Constants.brownCaseImgName,
+                      imageName: Constants.brownCaseImagesNames[0],
                       frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                       tag: 2, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: brownCaseView
         )
         createProduct(text: Constants.iphoneInfo,
-                      imageName: Constants.iphoneImgName,
+                      imageName: Constants.iphoneImageName[0],
                       frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                       tag: 3, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: phoneCaseView
