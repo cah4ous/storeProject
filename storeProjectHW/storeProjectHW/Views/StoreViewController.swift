@@ -93,9 +93,9 @@ final class StoreViewController: UIViewController {
     var textDescription = Constants.emptyText
     var imageText = Constants.emptyText
     var currentPage = 0
-    var numberOfPages = 0
-    var delegate: OnboardingBusinessLogic?
-
+    var pagesNumber = 0
+    weak var delegate: OnboardingBusinessLogicDelegate?
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +114,7 @@ final class StoreViewController: UIViewController {
     
     // MARK: - Private Objc Methods
     @objc func goForwardAction(_ sender: UIButton) {
-        if currentPage < numberOfPages {
+        if currentPage < pagesNumber {
             delegate?.goForward(index: currentPage)
         }
     }
@@ -134,7 +134,7 @@ final class StoreViewController: UIViewController {
     
     private func setValues() {
         mainPageImageView.image = UIImage(named: imageText)
-        pageControl.numberOfPages = numberOfPages
+        pageControl.numberOfPages = pagesNumber
         pageControl.currentPage = currentPage
         titleLabel.text = presentText
         descriptionTextLabel.text = textDescription

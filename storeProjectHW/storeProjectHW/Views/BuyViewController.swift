@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 /// Экран для покупок
 final class BuyViewController: UIViewController {
      private enum Constants {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol OnboardingBusinessLogic {
+protocol OnboardingBusinessLogicDelegate: NSObjectProtocol {
     func goForward(index: Int)
 }
 
@@ -21,10 +21,10 @@ final class PageViewController: UIPageViewController {
         static let pageInfoTwo = "Favorable days are important. Vestibulum rutrum quam vitae fringila tincidunt"
         static let pageInfoThree =
         "Personal health inside. Vestibulum rutrum quam vitae fringila tincidunt"
-        static let firstImage = "page1"
-        static let secondImage = "page2"
-        static let thirdImage = "page3"
-        static let isWatchedPresentation = "viewed"
+        static let firstImageName = "page1"
+        static let secondImageName = "page2"
+        static let thirdImageName = "page3"
+        static let watchedPresentation = "viewed"
     
     }
     
@@ -35,7 +35,7 @@ final class PageViewController: UIPageViewController {
     private let titles = [Constants.pageTitleOne, Constants.pageTitleTwo, Constants.pageTitleThree]
     private let descriptions = [Constants.pageInfoOne, Constants.pageInfoTwo,
                               Constants.pageInfoThree]
-    private let images = [Constants.firstImage, Constants.secondImage, Constants.thirdImage]
+    private let images = [Constants.firstImageName, Constants.secondImageName, Constants.thirdImageName]
     private var pageControl =  UIPageControl.appearance()
 
     // MARK: - Lifecycle
@@ -73,21 +73,21 @@ final class PageViewController: UIPageViewController {
             storeViewController.presentText = titles[index]
             storeViewController.textDescription = descriptions[index]
             storeViewController.currentPage = index
-            storeViewController.numberOfPages = titles.count
+            storeViewController.pagesNumber = titles.count
             storeViewController.imageText = images[index]
             storeViewController.delegate = self
 
             return storeViewController
             
         } else {
-            UserDefaults.standard.set(true, forKey: Constants.isWatchedPresentation)
+            UserDefaults.standard.set(true, forKey: Constants.watchedPresentation)
             return nil}
 
     }
 }
 
 /// protocolPageViewController
-extension PageViewController: OnboardingBusinessLogic {
+extension PageViewController: OnboardingBusinessLogicDelegate {
     func goForward(index: Int) {
         newIndex = index
         guard let currentPage = viewControllers?.first,

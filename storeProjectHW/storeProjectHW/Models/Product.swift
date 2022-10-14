@@ -6,10 +6,11 @@
 //
 
 import Foundation
+
 /// Product
 struct Product {
      let name: String
      let imageNames: [String]
      let price: String
-     let url: String
+     let urlName: String
  }

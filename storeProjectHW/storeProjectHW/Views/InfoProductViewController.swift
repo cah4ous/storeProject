@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 /// Экран со сведениями о продукте
 final class InfoProductViewController: UIViewController {
     private enum Constants {
@@ -167,7 +168,7 @@ final class InfoProductViewController: UIViewController {
     @objc private func handleTap(gest: UIGestureRecognizer) {
         let webProductViewController = WebViewController()
         guard let product = product else { return }
-        webProductViewController.urlOfContent = product.url
+        webProductViewController.urlOfContent = product.urlName
         
         navigationController?.present(webProductViewController, animated: true)
      }

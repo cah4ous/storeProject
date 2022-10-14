@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 /// Экран поиска
 final class SearchViewController: UIViewController {
     private enum Constants {
@@ -24,10 +25,10 @@ final class SearchViewController: UIViewController {
         static let compare = "Cравнение модели iPhone"
         static let clear = "Очистить"
         static let searchProduct = " Поиск по продуктам и магазинам"
-        static let blackImages = ["Image", "case2", "case3"]
-        static let strapImages = ["4", "clock2"]
-        static let brownCaseImages = ["2", "caseBrown2", "caseBrown3"]
-        static let iphoneImages = ["iphone12"]
+        static let blackImagesNames = ["Image", "case2", "case3"]
+        static let strapImagesNames = ["4", "clock2"]
+        static let brownCaseImagesNames = ["2", "caseBrown2", "caseBrown3"]
+        static let iphoneImageName = ["iphone12"]
         static let blackCasePrice = "3900"
         static let brownCasePrice = "4200"
         static let strapPrice = "8000"
@@ -35,37 +36,37 @@ final class SearchViewController: UIViewController {
         static let mainTextColor = "mainTextColor"
         static let searchColor = "searchaColor"
         static let tabColor = "tabColor"
-        static let blackCaseUrl = "https://re-store.ru/catalog/P058-109-15/"
-        static let sportStrapUrl = "https://re-store.ru/search/?q=Спортивный%20ремешок%20Black%20Unity"
-        static let caseBrownUrl = "https://re-store.ru/catalog/NM7MDT0M00/"
-        static let iPhoneUrl = "https://re-store.ru/catalog/MGDC3RU-A/"
+        static let blackCaseUrlName = "https://re-store.ru/catalog/P058-109-15/"
+        static let sportStrapUrlName = "https://re-store.ru/search/?q=Спортивный%20ремешок%20Black%20Unity"
+        static let caseBrownUrlName = "https://re-store.ru/catalog/NM7MDT0M00/"
+        static let iPhoneUrlName = "https://re-store.ru/catalog/MGDC3RU-A/"
         static let viewBackColor = "viewBackColor"
     }
     
     private let products = [
          Product(
              name: Constants.blackCase,
-             imageNames: Constants.blackImages,
+             imageNames: Constants.blackImagesNames,
              price: Constants.blackCasePrice,
-             url: Constants.blackCaseUrl
+             urlName: Constants.blackCaseUrlName
          ),
          Product(
             name: Constants.watch,
-             imageNames: Constants.strapImages,
+             imageNames: Constants.strapImagesNames,
              price: Constants.strapPrice,
-             url: Constants.sportStrapUrl
+             urlName: Constants.sportStrapUrlName
          ),
          Product(
              name: Constants.brownCase,
-             imageNames: Constants.brownCaseImages,
+             imageNames: Constants.brownCaseImagesNames,
              price: Constants.brownCasePrice,
-             url: Constants.caseBrownUrl
+             urlName: Constants.caseBrownUrlName
          ),
          Product(
              name: Constants.iphoneInfo,
-             imageNames: Constants.iphoneImages,
+             imageNames: Constants.iphoneImageName,
              price: Constants.iPhonePrice,
-             url: Constants.iPhoneUrl
+             urlName: Constants.iPhoneUrlName
          )
      ]
 
@@ -222,25 +223,25 @@ final class SearchViewController: UIViewController {
         createProductText(text: Constants.compare, frame: CGRect(x: 40, y: 640, width: 300, height: 50))
         
         createProduct(text: Constants.blackCase,
-                     imageName: Constants.blackImages[0],
+                     imageName: Constants.blackImagesNames[0],
                      frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                      tag: 0, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: blackCaseView
         )
         createProduct(text: Constants.watch,
-                      imageName: Constants.strapImages[0],
+                      imageName: Constants.strapImagesNames[0],
                       frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                       tag: 1, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: watchbandView
         )
         createProduct(text: Constants.brownCase,
-                      imageName: Constants.brownCaseImages[0],
+                      imageName: Constants.brownCaseImagesNames[0],
                       frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                       tag: 2, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: brownCaseView
         )
         createProduct(text: Constants.iphoneInfo,
-                      imageName: Constants.iphoneImages[0],
+                      imageName: Constants.iphoneImageName[0],
                       frameOfSecondImage: CGRect(x: 23, y: 30, width: 100, height: 100),
                       tag: 3, frameOfLabel: CGRect(x: 13, y: 120, width: 130, height: 80),
                       newView: phoneCaseView

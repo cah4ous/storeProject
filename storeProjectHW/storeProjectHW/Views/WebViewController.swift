@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+
 /// Экран web
 final class WebViewController: UITabBarController {
     private enum Constants {
